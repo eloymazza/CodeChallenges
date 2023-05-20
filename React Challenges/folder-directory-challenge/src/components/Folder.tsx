@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { IFolder, TFileSystemItem } from '../types/types';
 import File from './File';
-import RemovableITem from '../HOC/RemovableITem';
 
 type Props = IFolder & {
   handleRemoveFolder: (id: string) => void;
 };
 
-const Folder: React.FC<Props> = ({ name, id, handleRemoveFolder }) => {
-  const [subItems, setSubItems] = useState<TFileSystemItem[]>([]);
+const Folder: React.FC<Props> = ({
+  name,
+  id,
+  isExpanded = true,
+  handleRemoveFolder,
+  isRoot = false,
+  subItems,
+}) => {
+  const [items, setItems] = useState<TFileSystemItem[]>(subItems);
+  const [expanded, setIsExpanded] = useState(isExpanded);
 
   const handleAddFolder = () => {
-    setSubItems((prev) => [
+    setItems((prev) => [
       ...prev,
       {
         id: crypto.randomUUID(),
@@ -22,7 +29,7 @@ const Folder: React.FC<Props> = ({ name, id, handleRemoveFolder }) => {
   };
 
   const handleAddFile = () => {
-    setSubItems((prev) => [
+    setItems((prev) => [
       ...prev,
       {
         id: crypto.randomUUID(),
@@ -33,11 +40,18 @@ const Folder: React.FC<Props> = ({ name, id, handleRemoveFolder }) => {
   };
 
   const handleRemoveItem = (id: string) => {
-    setSubItems((prev) => prev.filter((item) => item.id !== id));
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleExpandFolder = () => {
+    setIsExpanded((prev) => !prev);
   };
 
   return (
     <>
+      <button onClick={handleExpandFolder} type='button'>
+        {expanded ? '-' : '+'}
+      </button>
       <span>{name}</span>
       <button type='button' onClick={handleAddFolder}>
         Add Folder
@@ -45,14 +59,20 @@ const Folder: React.FC<Props> = ({ name, id, handleRemoveFolder }) => {
       <button type='button' onClick={handleAddFile}>
         Add File
       </button>
-      <button onClick={() => handleRemoveFolder(id)} type='button'>
-        Remove
-      </button>
-      <ul>
-        {subItems.map((item) => (
+      {!isRoot && (
+        <button onClick={() => handleRemoveFolder(id)} type='button'>
+          Remove
+        </button>
+      )}
+      <ul style={{ display: expanded ? 'block' : 'none' }}>
+        {items.map((item) => (
           <li key={item.id}>
             {'subItems' in item ? (
-              <Folder {...item} handleRemoveFolder={handleRemoveItem} />
+              <Folder
+                {...item}
+                subItems={item.subItems}
+                handleRemoveFolder={handleRemoveItem}
+              />
             ) : (
               <>
                 <File {...item} />

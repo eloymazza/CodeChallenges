@@ -5,7 +5,13 @@ function App() {
   return (
     <>
       <h1> File System Challenge</h1>
-      <Folder id={crypto.randomUUID()} name={'root'} subItems={[]} />
+      <Folder
+        isRoot
+        id={crypto.randomUUID()}
+        name={'root'}
+        subItems={[]}
+        handleRemoveFolder={() => undefined}
+      />
     </>
   );
 }

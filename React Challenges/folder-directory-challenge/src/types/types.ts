@@ -5,6 +5,8 @@ export interface Identificable {
 
 export interface IFolder extends Identificable {
   subItems: (IFolder | IFile)[];
+  isExpanded?: boolean;
+  isRoot?: boolean;
 }
 
 export interface IFile extends Identificable {
