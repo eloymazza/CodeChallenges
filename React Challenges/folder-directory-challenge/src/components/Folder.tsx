@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IFolder, TFileSystemItem } from '../types/types';
 import File from './File';
+import { VscFolderOpened, VscFolder } from 'react-icons/vsc';
 
 type Props = IFolder & {
   handleRemoveFolder: (id: string) => void;
@@ -9,17 +10,16 @@ type Props = IFolder & {
 const Folder: React.FC<Props> = ({
   name,
   id,
-  isExpanded = true,
   handleRemoveFolder,
   isRoot = false,
   subItems,
 }) => {
   const [items, setItems] = useState<TFileSystemItem[]>(subItems);
-  const [expanded, setIsExpanded] = useState(isExpanded);
+  const [expanded, setIsExpanded] = useState(true);
 
   const handleAddFolder = () => {
-    setItems((prev) => [
-      ...prev,
+    setItems([
+      ...items,
       {
         id: crypto.randomUUID(),
         name: 'New Folder',
@@ -29,8 +29,8 @@ const Folder: React.FC<Props> = ({
   };
 
   const handleAddFile = () => {
-    setItems((prev) => [
-      ...prev,
+    setItems([
+      ...items,
       {
         id: crypto.randomUUID(),
         name: 'New File',
@@ -50,7 +50,7 @@ const Folder: React.FC<Props> = ({
   return (
     <>
       <button onClick={handleExpandFolder} type='button'>
-        {expanded ? '-' : '+'}
+        {expanded ? <VscFolderOpened /> : <VscFolder />}
       </button>
       <span>{name}</span>
       <button type='button' onClick={handleAddFolder}>
@@ -64,7 +64,9 @@ const Folder: React.FC<Props> = ({
           Remove
         </button>
       )}
-      <ul style={{ display: expanded ? 'block' : 'none' }}>
+      <ul
+        style={{ display: expanded ? 'block' : 'none', listStyleType: 'none' }}
+      >
         {items.map((item) => (
           <li key={item.id}>
             {'subItems' in item ? (

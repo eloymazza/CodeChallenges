@@ -1,4 +1,5 @@
 import React from 'react';
+import { VscFile } from 'react-icons/vsc';
 
 type Props = {
   id: string;
@@ -6,7 +7,12 @@ type Props = {
 };
 
 const File: React.FC<Props> = ({ name }) => {
-  return <>{name}</>;
+  return (
+    <>
+      <VscFile />
+      {name}
+    </>
+  );
 };
 
 export default File;
