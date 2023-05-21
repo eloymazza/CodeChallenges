@@ -5,13 +5,15 @@ function App() {
   return (
     <>
       <h1> File System Challenge</h1>
-      <Folder
-        isRoot
-        id={crypto.randomUUID()}
-        name={'root'}
-        subItems={[]}
-        handleRemoveFolder={() => undefined}
-      />
+      <div className='file-system-container'>
+        <Folder
+          isRoot
+          id={crypto.randomUUID()}
+          name={'Root'}
+          subItems={[]}
+          handleRemoveFolder={() => undefined}
+        />
+      </div>
     </>
   );
 }

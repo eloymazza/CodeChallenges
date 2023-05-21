@@ -1,5 +1,6 @@
 import React from 'react';
 import { VscFile } from 'react-icons/vsc';
+import RenamableElement from '../HOC/RenamableElement';
 
 type Props = {
   id: string;
@@ -9,8 +10,12 @@ type Props = {
 const File: React.FC<Props> = ({ name }) => {
   return (
     <>
-      <VscFile />
-      {name}
+      <span>
+        <VscFile />
+      </span>
+      <RenamableElement>
+        <span>{name}</span>
+      </RenamableElement>
     </>
   );
 };

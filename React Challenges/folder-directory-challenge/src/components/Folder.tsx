@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { IFolder, TFileSystemItem } from '../types/types';
 import File from './File';
 import { VscFolderOpened, VscFolder } from 'react-icons/vsc';
+import { FiFolderPlus, FiTrash } from 'react-icons/fi';
+import { AiOutlineFileAdd } from 'react-icons/ai';
+import RenamableItem from '../HOC/RenamableElement';
+import Button from '../UI/Button';
 
 type Props = IFolder & {
   handleRemoveFolder: (id: string) => void;
@@ -49,43 +53,63 @@ const Folder: React.FC<Props> = ({
 
   return (
     <>
-      <button onClick={handleExpandFolder} type='button'>
-        {expanded ? <VscFolderOpened /> : <VscFolder />}
-      </button>
-      <span>{name}</span>
-      <button type='button' onClick={handleAddFolder}>
-        Add Folder
-      </button>
-      <button type='button' onClick={handleAddFile}>
-        Add File
-      </button>
-      {!isRoot && (
-        <button onClick={() => handleRemoveFolder(id)} type='button'>
-          Remove
-        </button>
-      )}
-      <ul
-        style={{ display: expanded ? 'block' : 'none', listStyleType: 'none' }}
-      >
-        {items.map((item) => (
-          <li key={item.id}>
-            {'subItems' in item ? (
-              <Folder
-                {...item}
-                subItems={item.subItems}
-                handleRemoveFolder={handleRemoveItem}
-              />
-            ) : (
-              <>
-                <File {...item} />
-                <button onClick={() => handleRemoveItem(item.id)} type='button'>
-                  Remove
-                </button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      <div className='item-container'>
+        <Button
+          title={expanded ? 'Collapse' : 'Expand'}
+          onClick={handleExpandFolder}
+          type='button'
+        >
+          {expanded ? <VscFolderOpened /> : <VscFolder />}
+        </Button>
+        <RenamableItem>
+          <div>{name}</div>
+        </RenamableItem>
+        <Button title='Add Folder' type='button' onClick={handleAddFolder}>
+          <FiFolderPlus />
+        </Button>
+        <Button title='Add File' type='button' onClick={handleAddFile}>
+          <AiOutlineFileAdd />
+        </Button>
+        {!isRoot && (
+          <Button
+            title='Remove'
+            onClick={() => handleRemoveFolder(id)}
+            type='button'
+          >
+            <FiTrash />
+          </Button>
+        )}
+      </div>
+      <div>
+        <ul
+          style={{
+            display: expanded ? 'block' : 'none',
+            listStyleType: 'none',
+          }}
+        >
+          {items.map((item) => (
+            <li key={item.id}>
+              {'subItems' in item ? (
+                <Folder
+                  {...item}
+                  subItems={item.subItems}
+                  handleRemoveFolder={handleRemoveItem}
+                />
+              ) : (
+                <span style={{ paddingLeft: 8 }}>
+                  <File {...item} />
+                  <Button
+                    onClick={() => handleRemoveItem(item.id)}
+                    type='button'
+                  >
+                    <FiTrash />
+                  </Button>
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
