@@ -96,7 +96,7 @@ const Folder: React.FC<Props> = ({
                   handleRemoveFolder={handleRemoveItem}
                 />
               ) : (
-                <span style={{ paddingLeft: 8 }}>
+                <>
                   <File {...item} />
                   <Button
                     onClick={() => handleRemoveItem(item.id)}
@@ -104,7 +104,7 @@ const Folder: React.FC<Props> = ({
                   >
                     <FiTrash />
                   </Button>
-                </span>
+                </>
               )}
             </li>
           ))}
