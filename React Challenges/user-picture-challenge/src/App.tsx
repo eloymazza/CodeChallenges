@@ -1,11 +1,11 @@
 import './App.css';
-import User from './components/User/User';
+import UserList from './components/UserList/UserList';
 
 function App() {
   return (
     <div>
       <h1>User Picture challenge</h1>
-      <User />
+      <UserList />
     </div>
   );
 }

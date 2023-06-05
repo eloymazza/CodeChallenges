@@ -1,8 +1,11 @@
-import useUser from '../../hooks/useUser';
+import { User as TUser } from '../../types/types';
 
-const User = () => {
-  const user = useUser();
-  if (!user) return <div>Loading...</div>;
+type Props = {
+  user: TUser;
+};
+
+const User: React.FC<Props> = ({ user }) => {
+  if (!user) return <div>No users to display</div>;
 
   return (
     <div>
