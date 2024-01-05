@@ -1,4 +1,4 @@
-type CardImages = {
+export type CardImages = {
   name: string;
   imgSrc: string;
   type: string;

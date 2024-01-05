@@ -3,7 +3,7 @@
 }
 
 :root {
-  --card-size: 200px;
+  --card-size: 17.5rem;
 }
 
 body {
@@ -22,24 +22,19 @@ main {
 .board {
   display: grid;
   grid-template-columns: repeat(5, var(--card-size));
-  grid-auto-rows: var(--card-size);
-  gap: 15px;
+  grid-template-rows: repeat(4, calc(var(--card-size) * 0.8));
+  grid-auto-rows: 10vh;
+  gap: 1rem;
 }
 
 /* Card flip animation  */
 .flip-card:hover {
   cursor: pointer;
 }
-/* .flip-card {
-  transform: rotateY(180deg);
-  transition: 1s linear;
-} */
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: var(--card-size);
-  height: var(--card-size);
   perspective: 500px; /* Remove this if you don't want the 3D effect */
 }
 

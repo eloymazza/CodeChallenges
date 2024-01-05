@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import Card from "./Card";
 import { getDefaultImages } from "../utils/defaultCards";
+import { arrayShuffle } from "../utils/utils";
 
 type Props = {
   elementsQTY: number;
@@ -16,11 +17,13 @@ type TCard = {
 };
 
 const Board: FC<Props> = ({ elementsQTY, setShowCongrats }: Props) => {
-  const defaultImages = getDefaultImages(elementsQTY / 2);
+  const defaultImages = getDefaultImages(elementsQTY);
+  const defaultCardsImages = defaultImages.concat(defaultImages);
+  const randomizedCardImages = arrayShuffle(defaultCardsImages);
 
   const [cards, setCards] = useState<TCard[]>(
-    Array.from({ length: elementsQTY }).map((_, index) => {
-      const { name, imgSrc } = defaultImages[index % defaultImages.length];
+    Array.from({ length: elementsQTY * 2 }).map((_, index) => {
+      const { name, imgSrc } = randomizedCardImages[index];
       return {
         id: (index + 1).toString(),
         name,

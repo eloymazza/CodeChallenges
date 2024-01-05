@@ -14,7 +14,7 @@ function App() {
   return (
     <Layout>
       {/* <CongratsAnimation show={showCongrats} /> */}
-      <Board elementsQTY={20} setShowCongrats={handleShowCongrats} />
+      <Board elementsQTY={10} setShowCongrats={handleShowCongrats} />
     </Layout>
   );
 }
