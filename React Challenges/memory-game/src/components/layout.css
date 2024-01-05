@@ -1,0 +1,12 @@
+.layout {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5% 1fr 5%;
+  height: 100vh;
+}
+
+header,
+footer,
+main {
+  border: 1px solid black;
+}
