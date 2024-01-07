@@ -5,7 +5,7 @@ import { arrayShuffle } from "../utils/utils";
 
 type Props = {
   elementsQTY: number;
-  setShowCongrats: (show: boolean) => void;
+  // setShowCongrats: (show: boolean) => void;
 };
 
 type TCard = {
@@ -16,7 +16,10 @@ type TCard = {
   removed: boolean;
 };
 
-const Board: FC<Props> = ({ elementsQTY, setShowCongrats }: Props) => {
+const Board: FC<Props> = ({
+  elementsQTY
+}: // , setShowCongrats
+Props) => {
   const defaultImages = getDefaultImages(elementsQTY);
   const defaultCardsImages = defaultImages.concat(defaultImages);
   const randomizedCardImages = arrayShuffle(defaultCardsImages);
@@ -61,7 +64,7 @@ const Board: FC<Props> = ({ elementsQTY, setShowCongrats }: Props) => {
       }
     });
     setCards(newCards);
-    setShowCongrats(false);
+    // setShowCongrats(false);
   };
 
   const evaluateCards = (index: string) => {
@@ -74,15 +77,15 @@ const Board: FC<Props> = ({ elementsQTY, setShowCongrats }: Props) => {
     }
 
     if (activeCard.name === selectedCard.name) {
-      setShowCongrats(true);
+      // setShowCongrats(true);
       setTimeout(() => {
         removeCards([activeCard.id, selectedCard.id]);
         resetRound();
-      }, 2000);
+      }, 1000);
     } else {
       setTimeout(() => {
         resetRound();
-      }, 2000);
+      }, 1000);
     }
   };
 

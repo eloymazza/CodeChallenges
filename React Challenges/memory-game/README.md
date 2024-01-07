@@ -33,10 +33,12 @@ export default {
 
 Stage 1:
 
-- Add random default images
-- Images optimiazation
 - Add random api images
 - Add the capability to add your own picks. Complete the empty spaces with random picks
 - Add 3 game sizes. Evaluate which are the best sizes to put.
 - Add Time limit mode. Substract 3 secs on error.
+- Images optimization: Spike on how to render images properly
 - load images on server
+- responsive
+
+API Key=zHp3kIIQgzgusuAmelDHrdUMHgBO089L9kz1tcisKaLEf9P4Vh1HvFo8

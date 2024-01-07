@@ -1,21 +1,31 @@
-import { useState } from "react";
 import "./App.css";
-import Board from "./components/Board";
 import Layout from "./components/Layout";
-// import CongratsAnimation from "./components/CongratsAnimation";
+import { useReducer } from "react";
+import { gameStateReducer } from "./store/reducers/gameStateReducer";
+import {
+  GameContext,
+  GameDispatchContext
+} from "./store/contexts/gameStateContext";
+import { GameState } from "./types/GameTypes";
+import Screen from "./components/Screen";
 
 function App() {
-  const [showCongrats, setShowCongrats] = useState<boolean>(false);
-
-  const handleShowCongrats = (show: boolean) => {
-    setShowCongrats(show);
+  const initialState: GameState = {
+    stage: "main",
+    mode: "default",
+    difficulty: "easy"
   };
 
+  const [gameState, dispatch] = useReducer(gameStateReducer, initialState);
+
   return (
-    <Layout>
-      {/* <CongratsAnimation show={showCongrats} /> */}
-      <Board elementsQTY={10} setShowCongrats={handleShowCongrats} />
-    </Layout>
+    <GameContext.Provider value={gameState}>
+      <GameDispatchContext.Provider value={dispatch}>
+        <Layout>
+          <Screen stage={gameState.stage} />
+        </Layout>
+      </GameDispatchContext.Provider>
+    </GameContext.Provider>
   );
 }
 

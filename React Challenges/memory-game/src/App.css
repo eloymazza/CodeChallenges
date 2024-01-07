@@ -23,7 +23,6 @@ main {
   display: grid;
   grid-template-columns: repeat(5, var(--card-size));
   grid-template-rows: repeat(4, calc(var(--card-size) * 0.8));
-  grid-auto-rows: 10vh;
   gap: 1rem;
 }
 
