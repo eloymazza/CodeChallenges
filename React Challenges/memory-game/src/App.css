@@ -3,7 +3,7 @@
 }
 
 :root {
-  --card-size: 17.5rem;
+  --card-size: 12.5rem;
 }
 
 body {
@@ -21,8 +21,8 @@ main {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(5, var(--card-size));
-  grid-template-rows: repeat(4, calc(var(--card-size) * 0.8));
+  grid-template-columns: repeat(5, 15vw);
+  grid-template-rows: repeat(4, calc(15vw * 0.8));
   gap: 1rem;
 }
 
