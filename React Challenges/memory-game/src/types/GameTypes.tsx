@@ -1,9 +1,11 @@
 export type Stage = "main" | "in-game" | "end";
+export type Mode = "default" | "random" | "custom";
+export type Difficulty = "easy" | "medium" | "hard";
 
 export type GameState = {
   stage: Stage;
-  mode: "default" | "random" | "custom";
-  difficulty: "easy" | "medium" | "hard";
+  mode: Mode;
+  difficulty: Difficulty;
 };
 
 export type Card = {

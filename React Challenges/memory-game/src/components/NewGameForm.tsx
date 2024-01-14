@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GameDispatchContext } from "../store/contexts/gameStateContext";
+import { Difficulty, Mode } from "../types/GameTypes";
 
 const NewGameForm = () => {
   const dispatch = useContext(GameDispatchContext);
@@ -7,19 +8,23 @@ const NewGameForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const gameModeInputs = event.currentTarget.elements.namedItem("game-mode");
-    const difficultyInputs =
+    const gameModeInput = event.currentTarget.elements.namedItem("game-mode");
+    const difficultyInput =
       event.currentTarget.elements.namedItem("difficulty");
-    if (!(gameModeInputs && "value" in gameModeInputs)) {
+    if (!(gameModeInput && "value" in gameModeInput)) {
       throw new Error("No game mode selected");
     }
-    if (!(difficultyInputs && "value" in difficultyInputs)) {
+    if (!(difficultyInput && "value" in difficultyInput)) {
       throw new Error("No difficulty selected");
     }
 
     dispatch({
       type: "UPDATE",
-      payload: { stage: "in-game", mode: "default", difficulty: "easy" }
+      payload: {
+        stage: "in-game",
+        mode: gameModeInput.value as Mode,
+        difficulty: difficultyInput.value as Difficulty
+      }
     });
   };
 

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getDefaultImages } from "../utils/defaultCards";
 import { arrayShuffle } from "../utils/utils";
 import { Card } from "../types/GameTypes";
+import { GameContext } from "../store/contexts/gameStateContext";
 
 type Props = {
   elementsQTY: number;
