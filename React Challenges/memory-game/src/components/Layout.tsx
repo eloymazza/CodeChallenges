@@ -30,7 +30,7 @@ const Layout: FC<Props> = ({ children }: Props) => {
       <header className='header'>
         Memory Challenge
         <nav>
-          {stage === "in-game" && (
+          {stage !== "main" && (
             <button type='button' onClick={handleBackClick}>
               Back
             </button>

@@ -40,5 +40,3 @@ Stage 1:
 - Images optimization: Spike on how to render images properly
 - load images on server
 - responsive
-
-API Key=zHp3kIIQgzgusuAmelDHrdUMHgBO089L9kz1tcisKaLEf9P4Vh1HvFo8

@@ -1,8 +1,4 @@
-export type CardImages = {
-  name: string;
-  imgSrc: string;
-  type: string;
-};
+import { CardImages } from "../types/GameTypes";
 
 export const getDefaultImages = (qty: number): CardImages[] =>
   Array.from({ length: qty }).map((_, index) => {

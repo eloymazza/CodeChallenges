@@ -1,4 +1,4 @@
-export type Stage = "main" | "in-game" | "end";
+export type Stage = "main" | "in-game" | "end" | "random-images-set";
 export type Mode = "default" | "random" | "custom";
 export type Difficulty = "easy" | "medium" | "hard";
 
@@ -14,4 +14,10 @@ export type Card = {
   imgSrc: string;
   active: boolean;
   removed: boolean;
+};
+
+export type CardImages = {
+  name: string;
+  imgSrc: string;
+  type: string;
 };

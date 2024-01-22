@@ -18,10 +18,13 @@ const NewGameForm = () => {
       throw new Error("No difficulty selected");
     }
 
+    const stage =
+      gameModeInput.value === "random" ? "random-images-set" : "in-game";
+
     dispatch({
       type: "UPDATE",
       payload: {
-        stage: "in-game",
+        stage,
         mode: gameModeInput.value as Mode,
         difficulty: difficultyInput.value as Difficulty
       }
@@ -29,7 +32,7 @@ const NewGameForm = () => {
   };
 
   return (
-    <form action={"handleFormSubmit"} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label>Choose a game mode:</label>
       <div>
         <input

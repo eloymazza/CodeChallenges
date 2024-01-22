@@ -1,0 +1,6 @@
+### GET IMAGES from PeXels API given a search query
+
+GET https://api.pexels.com/v1/search?query=nature&per_page=1 HTTP/1.1
+Content-type: application/json; charset=utf8
+Authorization: zHp3kIIQgzgusuAmelDHrdUMHgBO089L9kz1tcisKaLEf9P4Vh1HvFo8
+X-User: 1
