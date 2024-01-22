@@ -1,4 +1,4 @@
-import NewGameForm from "./NewGameForm";
+import NewGameForm from "../forms/NewGameForm";
 
 const MainScreen = () => {
   return (

@@ -1,14 +1,11 @@
-import { FC } from "react";
 import MainScreen from "./MainScreen";
-import Board from "./Board";
-import { Stage } from "../types/GameTypes";
+import Board from "./BoardScreen";
 import RandomImageScreen from "./RandomImageScreen";
+import { useGameContext } from "../../hooks/useGameContext";
 
-type Props = {
-  stage: Stage;
-};
-
-const Screen: FC<Props> = ({ stage }: Props) => {
+const Screen = () => {
+  const { stage } = useGameContext();
+  console.log("stage", stage);
   switch (stage) {
     case "main":
       return <MainScreen />;

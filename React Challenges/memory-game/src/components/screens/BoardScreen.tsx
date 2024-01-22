@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { createPortal } from "react-dom";
-import { useCards } from "../hooks/useCards";
-import type { Card as TCard } from "../types/GameTypes";
-import Card from "./Card";
-import CongratsAnimation from "./CongratsAnimation";
+import { useCards } from "../../hooks/useCards";
+import type { Card as TCard } from "../../types/GameTypes";
+import Card from "../UI/Card";
+import CongratsAnimation from "../CongratsAnimation";
 
 type Props = {
   elementsQTY: number;
@@ -52,17 +52,13 @@ const Board: FC<Props> = ({ elementsQTY }: Props) => {
       return;
     }
 
-    if (activeCard.name === selectedCard.name) {
-      setShowCongrats(true);
-      setTimeout(() => {
+    setTimeout(() => {
+      if (activeCard.name === selectedCard.name) {
+        setShowCongrats(false);
         removeCards([activeCard.id, selectedCard.id]);
-        resetRound();
-      }, 1000);
-    } else {
-      setTimeout(() => {
-        resetRound();
-      }, 1000);
-    }
+      }
+      resetRound();
+    }, 1000);
   };
 
   const handleCardClick = (index: string) => () => {

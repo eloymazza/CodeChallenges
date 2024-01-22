@@ -3,7 +3,7 @@ import "./layout.css";
 import {
   GameContext,
   GameDispatchContext
-} from "../store/contexts/gameStateContext";
+} from "../../store/contexts/gameStateContext";
 
 type Props = {
   children: React.ReactNode;

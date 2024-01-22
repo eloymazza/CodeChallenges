@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { GameDispatchContext } from "../store/contexts/gameStateContext";
-import { Difficulty, Mode } from "../types/GameTypes";
+import { GameDispatchContext } from "../../store/contexts/gameStateContext";
+import { Difficulty, Mode } from "../../types/GameTypes";
 
 const NewGameForm = () => {
   const dispatch = useContext(GameDispatchContext);
