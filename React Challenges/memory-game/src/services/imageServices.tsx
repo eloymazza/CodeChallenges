@@ -33,10 +33,7 @@ export type Src = {
   tiny: string;
 };
 
-export const fetchImages = async (
-  query: string,
-  quantity: number
-): Promise<ImageResponse> => {
+export const fetchImages = async (query: string, quantity: number) => {
   const options = {
     headers: {
       Authorization: "zHp3kIIQgzgusuAmelDHrdUMHgBO089L9kz1tcisKaLEf9P4Vh1HvFo8"
@@ -49,8 +46,6 @@ export const fetchImages = async (
   if (!response.ok) {
     throw new Error("Error fetching images");
   }
-  console.log(response);
   const body: ImageResponse = await response.json();
-  console.log(body);
   return body;
 };

@@ -1,14 +1,11 @@
 import { GameState } from "../../types/GameTypes";
 
-export type Action<T> = {
+export type GameAction = {
   type: "UPDATE";
-  payload: Partial<T>;
+  payload: Partial<GameState>;
 };
 
-export const gameStateReducer = (
-  gameState: GameState,
-  action: Action<GameState>
-) => {
+export const gameStateReducer = (gameState: GameState, action: GameAction) => {
   switch (action.type) {
     case "UPDATE": {
       return {

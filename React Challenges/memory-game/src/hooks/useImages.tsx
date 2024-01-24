@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { GameContext } from "../store/contexts/gameStateContext";
 import { CardImages } from "../types/GameTypes";
 import { getDefaultImages } from "../utils/defaultCards";
-import { getImages } from "../services/imageServices";
 
+// TODO think about  how to use this hook regarding new images
 export const useImages = (qty: number) => {
   const gameContext = useContext(GameContext);
 
@@ -16,9 +16,10 @@ export const useImages = (qty: number) => {
     })()
   );
 
-  const searchNewImages = (searchTerm: string, qty: number) => {
-    return getDefaultImages(qty);
-  };
+  // const searchNewImages = (searchTerm: string, qty: number) => {
+  //   const images = fetchImages(searchTerm, qty);
+  //   console.log("fetched images", images);
+  // };
 
   return { sourceImages, setSourceImages };
 };

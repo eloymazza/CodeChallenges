@@ -16,7 +16,6 @@ const GameStateProvider = ({ children }: Props) => {
     mode: "default",
     difficulty: "easy"
   };
-
   const [gameState, dispatch] = useReducer(gameStateReducer, initialState);
 
   return (

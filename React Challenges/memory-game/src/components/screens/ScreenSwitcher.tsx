@@ -1,11 +1,10 @@
 import MainScreen from "./MainScreen";
 import Board from "./BoardScreen";
 import RandomImageScreen from "./RandomImageScreen";
-import { useGameContext } from "../../hooks/useGameContext";
+import { useGameContext } from "../../hooks/useContexts/useGameContext";
 
 const Screen = () => {
   const { stage } = useGameContext();
-  console.log("stage", stage);
   switch (stage) {
     case "main":
       return <MainScreen />;

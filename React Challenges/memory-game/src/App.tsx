@@ -1,15 +1,15 @@
 import "./App.css";
 import Layout from "./components/UI/Layout";
 import ScreenSwitcher from "./components/screens/ScreenSwitcher";
-import GameStateProvider from "./providers/GameStateProvider";
+import Providers from "./providers/Providers";
 
 function App() {
   return (
-    <GameStateProvider>
+    <Providers>
       <Layout>
         <ScreenSwitcher />
       </Layout>
-    </GameStateProvider>
+    </Providers>
   );
 }
 
