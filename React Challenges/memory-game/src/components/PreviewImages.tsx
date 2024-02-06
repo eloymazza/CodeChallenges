@@ -11,7 +11,7 @@ const PreviewImages = ({ images }: Props) => {
       {images.map((image) => {
         return (
           <article className={styles.previewImage}>
-            <img src={image.src.medium} alt={image.alt} />
+            <img src={image.src.large} alt={image.alt} />
           </article>
         );
       })}
