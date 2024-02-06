@@ -1,0 +1,12 @@
+.previewImagesContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 12.5rem);
+  gap: 10px 5px;
+}
+
+.previewImage img {
+  width: 12.5rem;
+  height: 12.5rem;
+  object-fit: cover;
+  cursor: pointer;
+}

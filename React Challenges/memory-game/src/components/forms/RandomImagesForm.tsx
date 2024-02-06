@@ -1,7 +1,10 @@
 import React from "react";
-import { fetchImages } from "../../services/imageServices";
 
-const RandomImagesForm = () => {
+type Props = {
+  onSubmit: (searchTerm: string, photoQTY: number) => void;
+};
+
+const RandomImagesForm = ({ onSubmit }: Props) => {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
@@ -9,8 +12,7 @@ const RandomImagesForm = () => {
     if (!searchTerm) {
       throw new Error("No search term provided");
     }
-    const previewImages = await fetchImages(searchTerm as string, 10);
-    console.log(previewImages);
+    onSubmit(searchTerm.toString(), 10);
   };
 
   return (
