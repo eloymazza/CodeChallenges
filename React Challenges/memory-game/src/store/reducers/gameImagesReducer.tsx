@@ -8,10 +8,7 @@ export type ImagesAction = {
 export const gameImagesReducer = (photos: Photo[], action: ImagesAction) => {
   switch (action.type) {
     case "UPDATE": {
-      return {
-        ...photos,
-        ...action.payload
-      };
+      return [...photos, ...action.payload];
     }
     default: {
       throw Error("Unknown action: " + action.type);

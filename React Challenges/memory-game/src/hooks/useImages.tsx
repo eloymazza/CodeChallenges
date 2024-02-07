@@ -1,25 +1,30 @@
-import { useContext, useState } from "react";
-import { GameContext } from "../store/contexts/gameStateContext";
+import { useState } from "react";
 import { CardImages } from "../types/GameTypes";
-import { getDefaultImages } from "../utils/defaultCards";
+import {
+  getDefaultImages,
+  getGameImagesFromPhotos
+} from "../utils/defaultCards";
+import { useGameContext } from "./useContexts/useGameContext";
+import { useImagesContext } from "./useContexts/useImagesContext";
 
-// TODO think about  how to use this hook regarding new images
 export const useImages = (qty: number) => {
-  const gameContext = useContext(GameContext);
+  const { mode } = useGameContext();
+  const photos = useImagesContext();
 
   const [sourceImages, setSourceImages] = useState<CardImages[]>(
     (() => {
-      if (gameContext?.mode) {
-        return getDefaultImages(qty);
+      switch (mode) {
+        case "default":
+          return getDefaultImages(qty);
+        case "random": {
+          console.log("photos", photos);
+          return getGameImagesFromPhotos(photos);
+        }
+        default:
+          return [];
       }
-      return [];
     })()
   );
-
-  // const searchNewImages = (searchTerm: string, qty: number) => {
-  //   const images = fetchImages(searchTerm, qty);
-  //   console.log("fetched images", images);
-  // };
 
   return { sourceImages, setSourceImages };
 };

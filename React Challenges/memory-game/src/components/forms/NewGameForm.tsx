@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { GameDispatchContext } from "../../store/contexts/gameStateContext";
 import { Difficulty, Mode } from "../../types/GameTypes";
+import { useGameDispatchContext } from "../../hooks/useContexts/useGameContext";
 
 const NewGameForm = () => {
-  const dispatch = useContext(GameDispatchContext);
-
+  const dispatch = useGameDispatchContext();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
