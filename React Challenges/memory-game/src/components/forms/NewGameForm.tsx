@@ -1,5 +1,11 @@
-import { Difficulty, Mode } from "../../types/GameTypes";
+import { Difficulty, Mode, Stage } from "../../types/GameTypes";
 import { useGameDispatchContext } from "../../hooks/useContexts/useGameContext";
+
+const MAPP_GAME_MODE_TO_STAGE: Record<Mode, Stage> = {
+  default: "in-game",
+  random: "random-images-set",
+  custom: "custom-images-set"
+};
 
 const NewGameForm = () => {
   const dispatch = useGameDispatchContext();
@@ -16,8 +22,7 @@ const NewGameForm = () => {
       throw new Error("No difficulty selected");
     }
 
-    const stage =
-      gameModeInput.value === "random" ? "random-images-set" : "in-game";
+    const stage = MAPP_GAME_MODE_TO_STAGE[gameModeInput.value as Mode];
 
     dispatch({
       type: "UPDATE",

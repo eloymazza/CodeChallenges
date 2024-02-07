@@ -17,7 +17,6 @@ const Board: FC<Props> = ({ elementsQTY }: Props) => {
 
   const resetRound = () => {
     setClickCount(0);
-    // setShowCongrats(false);
     setActiveCard(undefined);
     cards.forEach((card) => {
       card.active = false;
@@ -40,7 +39,6 @@ const Board: FC<Props> = ({ elementsQTY }: Props) => {
       }
     });
     setCards(newCards);
-    // setShowCongrats(false);
   };
 
   const evaluateCards = (index: string) => {

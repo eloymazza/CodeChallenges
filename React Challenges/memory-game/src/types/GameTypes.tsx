@@ -1,4 +1,9 @@
-export type Stage = "main" | "in-game" | "end" | "random-images-set";
+export type Stage =
+  | "main"
+  | "in-game"
+  | "end"
+  | "random-images-set"
+  | "custom-images-set";
 export type Mode = "default" | "random" | "custom";
 export type Difficulty = "easy" | "medium" | "hard";
 
