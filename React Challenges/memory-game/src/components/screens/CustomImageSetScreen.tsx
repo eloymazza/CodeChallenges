@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const IMAGES_GAME_QTY = 5;
+const IMAGES_GAME_QTY = 10;
 
 const CustomImagesSetScreen = () => {
   const [imagePreviewUrls, setImagePreviewUrls] = useState<string[] | null>(
@@ -25,6 +25,13 @@ const CustomImagesSetScreen = () => {
     setImagePreviewUrls(urls);
   };
 
+  const startCustomGame = () => {
+    if (!imagePreviewUrls || imagePreviewUrls.length !== IMAGES_GAME_QTY)
+      console.log("No enough images to start game with");
+    // TODO start custom game
+    // setSourceImages(getGameImagesFromPhotos(imagePreviewUrls));
+  };
+
   const startGameEnabled = imagePreviewUrls?.length ?? 0 >= IMAGES_GAME_QTY;
 
   return (
@@ -37,9 +44,17 @@ const CustomImagesSetScreen = () => {
         onChange={handleFileUpload}
       />
       {imagePreviewUrls?.map((imagePreviewUrls) => (
-        <img src={imagePreviewUrls} alt='Preview' width={300} height={300} />
+        <img
+          key={crypto.randomUUID()}
+          src={imagePreviewUrls}
+          alt='Preview'
+          width={300}
+          height={300}
+        />
       ))}
-      <button disabled={!startGameEnabled}>Start Game</button>
+      <button onClick={startCustomGame} disabled={!startGameEnabled}>
+        Start Game
+      </button>
     </section>
   );
 };

@@ -1,16 +1,18 @@
 import { FC, useState } from "react";
 import { createPortal } from "react-dom";
 import { useCards } from "../../hooks/useCards";
-import type { Card as TCard } from "../../types/GameTypes";
+import type { Card as TCard } from "../../types/gameTypes";
 import Card from "../UI/Card";
 import CongratsAnimation from "../CongratsAnimation";
+import { useGameImages } from "../../hooks/useGameImages";
 
 type Props = {
   elementsQTY: number;
 };
 
 const Board: FC<Props> = ({ elementsQTY }: Props) => {
-  const { cards, setCards } = useCards({ elementsQTY });
+  const { sourceImages } = useGameImages(elementsQTY);
+  const { cards, setCards } = useCards({ sourceImages, elementsQTY });
   const [clickCount, setClickCount] = useState<number>(0);
   const [activeCard, setActiveCard] = useState<TCard>();
   const [showCongrats, setShowCongrats] = useState<boolean>(false);

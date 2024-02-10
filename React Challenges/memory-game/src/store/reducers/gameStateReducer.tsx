@@ -1,4 +1,4 @@
-import { GameState } from "../../types/GameTypes";
+import { GameState } from "../../types/gameTypes";
 
 export type GameAction = {
   type: "UPDATE";

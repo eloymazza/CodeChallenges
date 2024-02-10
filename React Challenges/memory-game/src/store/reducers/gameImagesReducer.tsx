@@ -1,14 +1,17 @@
-import { Photo } from "../../services/imageServices";
+import { GameImage } from "../../types/imageTypes";
 
 export type ImagesAction = {
   type: "UPDATE";
-  payload: Photo[];
+  payload: GameImage[];
 };
 
-export const gameImagesReducer = (photos: Photo[], action: ImagesAction) => {
+export const gameImagesReducer = (
+  gameImages: GameImage[],
+  action: ImagesAction
+) => {
   switch (action.type) {
     case "UPDATE": {
-      return [...photos, ...action.payload];
+      return [...gameImages, ...action.payload];
     }
     default: {
       throw Error("Unknown action: " + action.type);

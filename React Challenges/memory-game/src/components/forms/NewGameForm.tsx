@@ -1,4 +1,4 @@
-import { Difficulty, Mode, Stage } from "../../types/GameTypes";
+import { Difficulty, Mode, Stage } from "../../types/gameTypes";
 import { useGameDispatchContext } from "../../hooks/useContexts/useGameContext";
 
 const MAPP_GAME_MODE_TO_STAGE: Record<Mode, Stage> = {

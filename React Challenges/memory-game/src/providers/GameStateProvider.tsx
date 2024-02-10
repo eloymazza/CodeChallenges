@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { GameState } from "../types/GameTypes";
+import { GameState } from "../types/gameTypes";
 import { gameStateReducer } from "../store/reducers/gameStateReducer";
 import {
   GameContext,

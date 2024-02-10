@@ -20,9 +20,3 @@ export type Card = {
   active: boolean;
   removed: boolean;
 };
-
-export type CardImages = {
-  name: string;
-  imgSrc: string;
-  type: string;
-};

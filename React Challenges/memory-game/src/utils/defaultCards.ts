@@ -1,7 +1,6 @@
-import { Photo } from "../services/imageServices";
-import { CardImages } from "../types/GameTypes";
+import { GameImage } from "../types/imageTypes";
 
-export const getDefaultImages = (qty: number): CardImages[] =>
+export const getDefaultImages = (qty: number): GameImage[] =>
   Array.from({ length: qty }).map((_, index) => {
     return {
       name: `default-${index + 1}`,
@@ -9,13 +8,3 @@ export const getDefaultImages = (qty: number): CardImages[] =>
       type: `default-${index + 1}`
     };
   });
-
-export const getGameImagesFromPhotos = (photos: Photo[]) => {
-  return photos.map((photo, index) => {
-    return {
-      name: `photo-${index + 1}`,
-      imgSrc: photo.src.large,
-      type: `photo-${index + 1}`
-    };
-  });
-};

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { arrayShuffle } from "../utils/utils";
-import { Card } from "../types/GameTypes";
-import { useImages } from "./useImages";
+import { GameImage } from "../types/imageTypes";
+import { Card } from "../types/gameTypes";
 
 type Props = {
   elementsQTY: number;
+  sourceImages: GameImage[];
 };
 
-export const useCards = ({ elementsQTY }: Props) => {
-  const { sourceImages } = useImages(elementsQTY);
+export const useCards = ({ sourceImages, elementsQTY }: Props) => {
   const defaultCardsImages = sourceImages.concat(sourceImages);
   const randomizedCardImages = arrayShuffle(defaultCardsImages);
   const [cards, setCards] = useState<Card[]>(
