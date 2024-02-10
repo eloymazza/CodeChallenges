@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useImageDispatchContext } from "../../hooks/useContexts/useImagesContext";
+import { useGameDispatchContext } from "../../hooks/useContexts/useGameContext";
 
 const IMAGES_GAME_QTY = 10;
 
 const CustomImagesSetScreen = () => {
-  const [imagePreviewUrls, setImagePreviewUrls] = useState<string[] | null>(
-    null
-  );
+  const [imgQTY, setImgQTY] = useState<number>(0);
+  const [imagePreviewUrls, setImagePreviewUrls] = useState<string[]>([]);
+
+  const dispatchGameImages = useImageDispatchContext();
+  const dispatchGameState = useGameDispatchContext();
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -22,17 +26,32 @@ const CustomImagesSetScreen = () => {
       const url = URL.createObjectURL(file);
       urls.push(url);
     });
+
+    setImgQTY(urls.length);
     setImagePreviewUrls(urls);
   };
 
   const startCustomGame = () => {
-    if (!imagePreviewUrls || imagePreviewUrls.length !== IMAGES_GAME_QTY)
-      console.log("No enough images to start game with");
-    // TODO start custom game
-    // setSourceImages(getGameImagesFromPhotos(imagePreviewUrls));
+    if (imgQTY < IMAGES_GAME_QTY) {
+      console.error("No enough images to start game with");
+      return;
+    }
+    const gameImages = imagePreviewUrls?.map((url, index) => ({
+      name: "cusotm-image-" + index,
+      imgSrc: url,
+      type: "custom",
+      alt: "Custom Image"
+    }));
+    dispatchGameImages({ type: "UPDATE", payload: gameImages });
+    dispatchGameState({
+      type: "UPDATE",
+      payload: {
+        stage: "in-game"
+      }
+    });
   };
 
-  const startGameEnabled = imagePreviewUrls?.length ?? 0 >= IMAGES_GAME_QTY;
+  const startGameEnabled = imgQTY >= IMAGES_GAME_QTY;
 
   return (
     <section>
@@ -48,8 +67,8 @@ const CustomImagesSetScreen = () => {
           key={crypto.randomUUID()}
           src={imagePreviewUrls}
           alt='Preview'
-          width={300}
-          height={300}
+          width={250}
+          height={200}
         />
       ))}
       <button onClick={startCustomGame} disabled={!startGameEnabled}>
