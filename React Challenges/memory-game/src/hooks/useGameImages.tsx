@@ -16,8 +16,11 @@ export const useGameImages = (qty: number) => {
         case "random": {
           return gameImages;
         }
+        case "custom": {
+          return gameImages;
+        }
         default:
-          return [];
+          throw Error("Unknown mode: " + mode);
       }
     })()
   );

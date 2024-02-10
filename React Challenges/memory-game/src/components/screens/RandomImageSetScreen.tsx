@@ -9,8 +9,8 @@ import { GameImage, Photo } from "../../types/imageTypes";
 
 const RandomImageScreen = () => {
   const [previewPhotos, setPreviewPhotos] = useState<Photo[]>([]);
-  const gameDispatch = useGameDispatchContext();
-  const gameImageDispatch = useImageDispatchContext();
+  const dispatchGameState = useGameDispatchContext();
+  const dispatchGameImages = useImageDispatchContext();
 
   const searchPreviewImages = async (searchTerm: string, photoQTY: number) => {
     const { photos } = await fetchImages(searchTerm, photoQTY);
@@ -28,8 +28,8 @@ const RandomImageScreen = () => {
       };
     });
 
-    gameImageDispatch({ type: "UPDATE", payload: gameImages });
-    gameDispatch({
+    dispatchGameImages({ type: "UPDATE", payload: gameImages });
+    dispatchGameState({
       type: "UPDATE",
       payload: {
         stage: "in-game"
